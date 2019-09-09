@@ -98,7 +98,28 @@ import math
 #     # с помощью assert проверяем, что ожидаемый текст совпадает с текстом на странице сайта
 #     assert "Congratulations! You have successfully registered!" == welcome_text
 
-link = "http://suninjuly.github.io/math.html"
+# link = "http://suninjuly.github.io/math.html"
+
+# try:
+#     browser = webdriver.Chrome()
+#     browser.get(link)
+#
+#
+#     def calc(x):
+#         return str(math.log(abs(12 * math.sin(int(x)))))
+#
+#     x_element = browser.find_element_by_id("input_value")
+#     x = x_element.text
+#     y = calc(x)
+#     input = browser.find_element_by_id("answer")
+#     input.send_keys(y)
+#
+#     checkbox = browser.find_element_by_css_selector("[for='robotCheckbox']").click()
+#     radio = browser.find_element_by_css_selector("[for='robotsRule']").click()
+#     button = browser.find_element_by_css_selector("[type='submit']")
+#     button.click()
+
+link = "http://suninjuly.github.io/get_attribute.html"
 
 try:
     browser = webdriver.Chrome()
@@ -108,14 +129,15 @@ try:
     def calc(x):
         return str(math.log(abs(12 * math.sin(int(x)))))
 
-    x_element = browser.find_element_by_id("input_value")
-    x = x_element.text
+    x_element = browser.find_element_by_id("treasure")
+    x = x_element.get_attribute("valuex")
     y = calc(x)
     input = browser.find_element_by_id("answer")
     input.send_keys(y)
 
-    checkbox = browser.find_element_by_css_selector("[for='robotCheckbox']")
-
+    checkbox = browser.find_element_by_id("robotCheckbox").click()
+    radio = browser.find_element_by_id("robotsRule").click()
+    button = browser.find_element_by_css_selector("[type='submit']").click()
 
 
 
