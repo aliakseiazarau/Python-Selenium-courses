@@ -1,6 +1,8 @@
 from selenium import webdriver
 import time
 import math
+from selenium.webdriver.support.ui import Select
+import os
 
 
 # link = "http://suninjuly.github.io/simple_form_find_task.html"
@@ -119,32 +121,87 @@ import math
 #     button = browser.find_element_by_css_selector("[type='submit']")
 #     button.click()
 
-link = "http://suninjuly.github.io/get_attribute.html"
+# link = "http://suninjuly.github.io/get_attribute.html"
+#
+# try:
+#     browser = webdriver.Chrome()
+#     browser.get(link)
+#
+#
+#     def calc(x):
+#         return str(math.log(abs(12 * math.sin(int(x)))))
+#
+#     x_element = browser.find_element_by_id("treasure")
+#     x = x_element.get_attribute("valuex")
+#     y = calc(x)
+#     input = browser.find_element_by_id("answer")
+#     input.send_keys(y)
+#
+#     checkbox = browser.find_element_by_id("robotCheckbox").click()
+#     radio = browser.find_element_by_id("robotsRule").click()
+#     button = browser.find_element_by_css_selector("[type='submit']").click()
+
+
+# link = "http://suninjuly.github.io/selects1.html"
+#
+# try:
+#     browser = webdriver.Chrome()
+#     browser.get(link)
+#
+#     x = browser.find_element_by_css_selector("span#num1").text
+#     y = browser.find_element_by_css_selector("span#num2").text
+#     z = int(x) + int(y)
+#     a = str(z)
+#     select = Select(browser.find_element_by_tag_name("select"))
+#     select.select_by_value(a)
+#     button = browser.find_element_by_css_selector("[type='submit']").click()
+
+
+# try:
+#     browser = webdriver.Chrome()
+#     link = "http://suninjuly.github.io/execute_script.html"
+#     browser.get(link)
+#
+#     def calc(x):
+#         return str(math.log(abs(12*math.sin(int(x)))))
+#
+#     element = browser.find_element_by_id("input_value").text
+#     print(element)
+#     x = int(element)
+#     y = calc(x)
+#     input = browser.find_element_by_id("answer")
+#     browser.execute_script("arguments[0].scrollIntoView()", input)
+#     input.send_keys(y)
+#     checkbox = browser.find_element_by_css_selector("[for='robotCheckbox']").click()
+#     radio = browser.find_element_by_css_selector("[for='robotsRule']").click()
+#     button = browser.find_element_by_css_selector("[type='submit']").click()
+#
+#     assert True
+#     # button = browser.find_element_by_tag_name("button")
+#     # browser.execute_script("return arguments[0].scrollIntoView(true);", button)
+#     # button.click()
+#     # browser.execute_script("window.scrollBy(0, 40);")
+
 
 try:
     browser = webdriver.Chrome()
+    link = "http://suninjuly.github.io/file_input.html"
     browser.get(link)
 
-
-    def calc(x):
-        return str(math.log(abs(12 * math.sin(int(x)))))
-
-    x_element = browser.find_element_by_id("treasure")
-    x = x_element.get_attribute("valuex")
-    y = calc(x)
-    input = browser.find_element_by_id("answer")
-    input.send_keys(y)
-
-    checkbox = browser.find_element_by_id("robotCheckbox").click()
-    radio = browser.find_element_by_id("robotsRule").click()
+    input1 = browser.find_element_by_name("firstname")
+    input1.send_keys("Pipi")
+    input2 = browser.find_element_by_name("lastname")
+    input2.send_keys("SyuSyu")
+    input3 = browser.find_element_by_name("email")
+    input3.send_keys("Pipisyusyu@mail.comfwd")
+    current_dir = os.path.abspath(os.path.dirname(__file__))  # получаем путь к директории текущего исполняемого файла
+    file_path = os.path.join(current_dir, 'file.txt')  # добавляем к этому пути имя файла
+    load = browser.find_element_by_css_selector("[type='file']")
+    load.send_keys(file_path)
     button = browser.find_element_by_css_selector("[type='submit']").click()
 
-
-
 finally:
-    # успеваем скопировать код за 30 секунд
     time.sleep(10)
-    # закрываем браузер после всех манипуляций
     browser.quit()
 
 # не забываем оставить пустую строку в конце файла
