@@ -183,25 +183,63 @@ import os
 #     # browser.execute_script("window.scrollBy(0, 40);")
 
 
+# try:
+#     browser = webdriver.Chrome()
+#     link = "http://suninjuly.github.io/file_input.html"
+#     browser.get(link)
+#
+#     input1 = browser.find_element_by_name("firstname")
+#     input1.send_keys("Pipi")
+#     input2 = browser.find_element_by_name("lastname")
+#     input2.send_keys("SyuSyu")
+#     input3 = browser.find_element_by_name("email")
+#     input3.send_keys("Pipisyusyu@mail.comfwd")
+#     current_dir = os.path.abspath(os.path.dirname(__file__))  # получаем путь к директории текущего исполняемого файла
+#     file_path = os.path.join(current_dir, 'file.txt')  # добавляем к этому пути имя файла
+#     load = browser.find_element_by_css_selector("[type='file']")
+#     load.send_keys(file_path)
+#     button = browser.find_element_by_css_selector("[type='submit']").click()
+
+# try:
+#     browser = webdriver.Chrome()
+#     link = "http://suninjuly.github.io/alert_accept.html"
+#     browser.get(link)
+#     button = browser.find_element_by_css_selector("[type='submit']")
+#     button.click()
+#     confirm = browser.switch_to.alert
+#     confirm.accept()
+#     def calc(x):
+#         return str(math.log(abs(12*math.sin(int(x)))))
+#
+#     element = browser.find_element_by_id("input_value").text
+#     x = int(element)
+#     y = calc(x)
+#     input = browser.find_element_by_id("answer")
+#     input.send_keys(y)
+#     button.click()
+
 try:
     browser = webdriver.Chrome()
-    link = "http://suninjuly.github.io/file_input.html"
+    link = "http://suninjuly.github.io/redirect_accept.html"
     browser.get(link)
+    button = browser.find_element_by_css_selector("[type='submit']")
+    button.click()
+    new_window = browser.window_handles[1]
+    browser.switch_to.window(new_window)
 
-    input1 = browser.find_element_by_name("firstname")
-    input1.send_keys("Pipi")
-    input2 = browser.find_element_by_name("lastname")
-    input2.send_keys("SyuSyu")
-    input3 = browser.find_element_by_name("email")
-    input3.send_keys("Pipisyusyu@mail.comfwd")
-    current_dir = os.path.abspath(os.path.dirname(__file__))  # получаем путь к директории текущего исполняемого файла
-    file_path = os.path.join(current_dir, 'file.txt')  # добавляем к этому пути имя файла
-    load = browser.find_element_by_css_selector("[type='file']")
-    load.send_keys(file_path)
-    button = browser.find_element_by_css_selector("[type='submit']").click()
+    def calc(x):
+        return str(math.log(abs(12*math.sin(int(x)))))
+
+    element1 = browser.find_element_by_id("input_value").text
+    x = int(element1)
+    y = calc(x)
+    input = browser.find_element_by_id("answer")
+    input.send_keys(y)
+    # browser.find_element_by_css_selector("[type='submit']").click()
+    time.sleep(2)
+    button.click()
+
 
 finally:
     time.sleep(10)
     browser.quit()
-
-# не забываем оставить пустую строку в конце файла
