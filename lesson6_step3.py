@@ -1,7 +1,11 @@
 from selenium import webdriver
 import time
 import math
+
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import os
 
 
@@ -218,14 +222,71 @@ import os
 #     input.send_keys(y)
 #     button.click()
 
+# try:
+#     browser = webdriver.Chrome()
+#     link = "http://suninjuly.github.io/redirect_accept.html"
+#     browser.get(link)
+#     button = browser.find_element_by_css_selector("[type='submit']")
+#     button.click()
+#     new_window = browser.window_handles[1]
+#     browser.switch_to.window(new_window)
+#
+#     def calc(x):
+#         return str(math.log(abs(12*math.sin(int(x)))))
+#
+#     element1 = browser.find_element_by_id("input_value").text
+#     x = int(element1)
+#     y = calc(x)
+#     input = browser.find_element_by_id("answer")
+#     input.send_keys(y)
+#     # browser.find_element_by_css_selector("[type='submit']").click()
+#     time.sleep(2)
+#     button.click()
+
+# try:
+#     browser = webdriver.Chrome()
+#     browser.get("http://suninjuly.github.io/wait1.html")
+#
+#     time.sleep(1)
+#     button = browser.find_element_by_id("verify")
+#     button.click()
+#     message = browser.find_element_by_id("verify_message")
+#
+#     assert "successful" in message.text
+
+#
+# try:
+#     from selenium import webdriver
+#
+#     browser = webdriver.Chrome()
+#     # говорим WebDriver искать каждый элемент в течение 5 секунд
+#     browser.implicitly_wait(5)
+#
+#     browser.get("http://suninjuly.github.io/wait1.html")
+#
+#     button = browser.find_element_by_id("verify")
+#     button.click()
+#     message = browser.find_element_by_id("verify_message")
+#
+#     assert "successful" in message.text
+
+# try:
+#     browser = webdriver.Chrome()
+#     browser.get("http://suninjuly.github.io/wait2.html")
+#     # говорим Selenium проверять в течение 5 секунд, пока кнопка не станет кликабельной
+#     button = WebDriverWait(browser, 5).until(EC.element_to_be_clickable((By.ID, "verify")))
+#     button.click()
+#     message = browser.find_element_by_id("verify_message")
+#
+#     assert "successful" in message.text
+
 try:
     browser = webdriver.Chrome()
-    link = "http://suninjuly.github.io/redirect_accept.html"
-    browser.get(link)
-    button = browser.find_element_by_css_selector("[type='submit']")
+    browser.get("http://suninjuly.github.io/explicit_wait2.html")
+    price = WebDriverWait(browser, 12).until(EC.text_to_be_present_in_element((By.ID, "price"), "$100"))
+    button = WebDriverWait(browser, 12).until(EC.element_to_be_clickable((By.ID, "book")))
     button.click()
-    new_window = browser.window_handles[1]
-    browser.switch_to.window(new_window)
+
 
     def calc(x):
         return str(math.log(abs(12*math.sin(int(x)))))
@@ -235,10 +296,7 @@ try:
     y = calc(x)
     input = browser.find_element_by_id("answer")
     input.send_keys(y)
-    # browser.find_element_by_css_selector("[type='submit']").click()
-    time.sleep(2)
-    button.click()
-
+    browser.find_element_by_css_selector("[type='submit']").click()
 
 finally:
     time.sleep(10)
