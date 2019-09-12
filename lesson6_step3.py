@@ -280,13 +280,21 @@ import os
 #
 #     assert "successful" in message.text
 
+
+#Examples of asserts:
+# def test_input_text(expected_result, actual_result):
+#     assert expected_result == actual_result, f"expected {expected_result}, got {actual_result}"
+#
+# def test_substring(full_string, substring):
+#     assert substring in full_string, f"expected '{substring}' to be substring of '{full_string}'"
+
+
 try:
     browser = webdriver.Chrome()
     browser.get("http://suninjuly.github.io/explicit_wait2.html")
     price = WebDriverWait(browser, 12).until(EC.text_to_be_present_in_element((By.ID, "price"), "$100"))
     button = WebDriverWait(browser, 12).until(EC.element_to_be_clickable((By.ID, "book")))
     button.click()
-
 
     def calc(x):
         return str(math.log(abs(12*math.sin(int(x)))))
