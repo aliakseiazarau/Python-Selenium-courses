@@ -4,14 +4,6 @@ import math
 import pytest
 
 
-@pytest.fixture(scope="session")
-def browser():
-    print("\nstart browser for test..")
-    browser = webdriver.Chrome()
-    yield browser
-    print("\nquit browser..")
-    browser.quit()
-
 
 links = ["https://stepik.org/lesson/236895/step/1",
          "https://stepik.org/lesson/236896/step/1",
