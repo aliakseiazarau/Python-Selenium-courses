@@ -1,2 +1,2 @@
 # Python-Selenium-courses
-Study to write autotests using python and selenium webdriver
+Studying to write autotests using python and selenium webdriver
